@@ -1,0 +1,38 @@
+#include <stdio.h>
+
+int searchRegNo(int regNos[], int size, int target) {	
+printf("name : CH.Yashwanth\nregno: 192210563");
+    for (int i = 0; i < size; i++) {
+        if (regNos[i] == target) {
+            return i; 
+        }
+    }
+    return -1; 
+}
+
+int main() {
+    int size;
+
+    printf("\nEnter the number of registration numbers: ");
+    scanf("%d", &size);
+
+    int regNos[size];
+
+    printf("\nEnter the registration numbers:\n");
+    for (int i = 0; i < size; i++) {
+        scanf("%d", &regNos[i]);
+    }
+
+    int targetRegNo;
+    printf("\nEnter the registration number to search: ");
+    scanf("%d", &targetRegNo);
+
+    int foundIndex = searchRegNo(regNos, size, targetRegNo);
+    if (foundIndex != -1) {
+        printf("\nRegistration number %d found at index %d.\n", targetRegNo, foundIndex);
+    } else {
+        printf("\nRegistration number %d not found.\n", targetRegNo);
+    }
+
+    return 0;
+}
