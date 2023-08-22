@@ -1,0 +1,90 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+
+struct ListNode {
+    int data;
+    struct ListNode *next;
+};
+
+
+void insertAtBeginning(struct ListNode **head, int data) {
+    struct ListNode *newNode = (struct ListNode *)malloc(sizeof(struct ListNode));
+    newNode->data = data;
+    newNode->next = *head;
+    *head = newNode;
+}
+
+
+void insertAtEnd(struct ListNode **head, int data) {
+    struct ListNode *newNode = (struct ListNode *)malloc(sizeof(struct ListNode));
+    newNode->data = data;
+    newNode->next = NULL;
+
+    if (*head == NULL) {
+        *head = newNode;
+    } else {
+        struct ListNode *temp = *head;
+        while (temp->next != NULL) {
+            temp = temp->next;
+        }
+        temp->next = newNode;
+    }
+}
+
+void deleteNode(struct ListNode **head, int data) {
+    if (*head == NULL)
+        return;
+
+    struct ListNode *temp = *head;
+    if (temp->data == data) {
+        *head = temp->next;
+        free(temp);
+        return;
+    }
+
+    struct ListNode *prev = NULL;
+    while (temp != NULL && temp->data != data) {
+        prev = temp;
+        temp = temp->next;
+    }
+
+    if (temp == NULL)
+        return;
+
+    prev->next = temp->next;
+    free(temp);
+}
+void display(struct ListNode *head) {
+    struct ListNode *current = head;
+    while (current != NULL) {
+        printf("%d -> ", current->data);
+        current = current->next;
+    }
+    printf("NULL\n");
+}
+
+int main() {
+		printf("\n name : CH.Yashwanth regno : 192210563");
+    struct ListNode *list = NULL;
+
+    insertAtBeginning(&list, 30);
+    insertAtBeginning(&list, 20);
+    insertAtBeginning(&list, 10);
+
+    printf("Linked List after insertion at beginning: ");
+    display(list);
+
+    insertAtEnd(&list, 40);
+    insertAtEnd(&list, 50);
+
+    printf("Linked List after insertion at end: ");
+    display(list);
+
+    deleteNode(&list, 20);
+
+    printf("Linked List after deletion of node with data 20: ");
+    display(list);
+
+    return 0;
+}
