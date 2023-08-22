@@ -1,0 +1,64 @@
+#include <stdio.h>
+
+int linearSearch(int arr[], int size, int target) {
+	printf("name : CH.Yashwanth\nregno: 192210563");
+    for (int i = 0; i < size; i++) {
+        if (arr[i] == target) {
+            return i; 
+        }
+    }
+    return -1; 
+}
+
+int binarySearch(int arr[], int size, int target) {
+    int left = 0;
+    int right = size - 1;
+
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+
+        if (arr[mid] == target) {
+            return mid; 
+        } else if (arr[mid] < target) {
+            left = mid + 1;
+        } else {
+            right = mid - 1;
+        }
+    }
+
+    return -1; 
+}
+
+int main() {
+    int size;
+
+    printf("\nEnter the size of the array: ");
+    scanf("%d", &size);
+
+    int arr[size];
+
+    printf("\nEnter the elements of the array in ascending order:\n");
+    for (int i = 0; i < size; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    int target;
+    printf("\nEnter the element to search: ");
+    scanf("%d", &target);
+
+    int linearIndex = linearSearch(arr, size, target);
+    if (linearIndex != -1) {
+        printf("\nLinear Search: Element %d found at index %d.\n", target, linearIndex);
+    } else {
+        printf("\nLinear Search: Element %d not found.\n", target);
+    }
+
+    int binaryIndex = binarySearch(arr, size, target);
+    if (binaryIndex != -1) {
+        printf("\nBinary Search: Element %d found at index %d.\n", target, binaryIndex);
+    } else {
+        printf("\nBinary Search: Element %d not found.\n", target);
+    }
+
+    return 0;
+}
