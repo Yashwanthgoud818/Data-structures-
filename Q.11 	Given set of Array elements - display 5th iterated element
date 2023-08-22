@@ -1,0 +1,33 @@
+#include <stdio.h>
+
+int main() {
+	printf("name : CH.Yashwanth\nregno: 192210563");
+    int size;
+
+    printf("\nEnter the size of the array: ");
+    scanf("%d", &size);
+
+    int arr[size];
+
+    printf("\nEnter the elements of the array:\n");
+    for (int i = 0; i < size; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    int fifthIteratedElement = -1; 
+
+    for (int i = 0; i < size; i++) {
+        if (i == 4) { 
+            fifthIteratedElement = arr[i];
+            break;
+        }
+    }
+
+    if (fifthIteratedElement != -1) {
+        printf("\nThe fifth iterated element: %d\n", fifthIteratedElement);
+    } else {
+        printf("\nThere is no fifth iterated element.\n");
+    }
+
+    return 0;
+}
